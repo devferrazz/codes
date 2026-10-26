@@ -8,6 +8,7 @@ resultado_bin = "" # resultado do binario
 digito_bin = "" # concatenação do binario, tem que ser string por causa dos 0s
 resultado_octal = "" #resultado do octal
 digito_octal = "" # var para auxilio nas conta, muita conta, muita váriavel e pouco neurônio
+texto_invertido = "" # to criando variavel que nem sabia que teria que criar
 #=======================Boolean================================
 valido = True # literalmente o botao de desligar do codigo
 #=======================Int=====================================
@@ -20,6 +21,8 @@ decimal = 0 # resposta de decimal
 octal = 0 # respota para octal
 Q = 0 #Quociente
 R = 0 #Resto
+pos = 0
+pot = 0 # irmao do pos, diferente do pos, eu sei oque esse faz, serve só pra potencializar
 #=================================Código==========================
 while valido == True:
     if num or decimal or count_char or char or R or Q or octal != 0: # o famoso if do reset de variavel
@@ -40,8 +43,8 @@ while valido == True:
     print("+====================================================+")
     print("+                (1) Número Octal                    +")
     print("+                (2) Número Decimal                  +")
-    print("+                (3) Número Hexadecimal              +")
     print("+                (4) Número Binário                  +")
+    print("+                (3) Número Hexadecimal              +")
     print("+====================================================+")
 
     tipo = int(input("Digite a origem do seu número para conversão (1 até 4)"  ))
@@ -329,7 +332,59 @@ while valido == True:
     elif tipo == 3 and tipo1 == 1: #Hexadecimal para Octal
         print("a")
     elif tipo == 3 and tipo1 == 2: #Hexadecimal para Decimal
-        print("a")
+        for char_str in num: 
+            if char_str == "-": # "Não vai subir ninguem!"  - Capitao Nascimento contra número negativo.v4
+                print("Saindo...") ## PEDE PRA SAIR RECRUTA
+                valido = False
+                break          #IMPORTANTE CITAR QUE -1 TEM QUE PARAR
+            else:
+                count_char += 1
+                texto_invertido = char_str + texto_invertido # dahora, inverti o texto, e o resto? estaca zero de novo
+                if count_char > 5:
+                    print("Por favor, digitar apenas 5 números")
+                    break
+                for i in range(len(texto_invertido)): # esse +1 é pra não dar index out of range, mas não sei se é a melhor forma de fazer isso
+                    char = texto_invertido[count_char] # verificar se isso é permitdo, se nao é for in texto_invertido, char_str, vai dar certo confia po
+                    if char == "0":
+                        digito = 0
+                    elif char == "1":
+                        digito = 1
+                    elif char == "2":
+                        digito = 2
+                    elif char == "3":
+                        digito = 3
+                    elif char == "4":
+                        digito = 4
+                    elif char == "5":
+                        digito = 5
+                    elif char == "6":
+                        digito = 6
+                    elif char == "7":
+                        digito = 7
+                    elif char == "8":
+                        digito = 8
+                    elif char == "9":
+                        digito = 9
+                    elif char == "A":
+                        digito = 10
+                    elif char == "B":
+                        digito = 11
+                    elif char == "C":
+                        digito = 12
+                    elif char == "D":
+                        digito = 13
+                    elif char == "E":
+                        digito = 14
+                    elif char == "F":
+                        digito = 15 
+                    pritn(f"texto_invertido: {texto_invertido}") #debug
+                    print(f"char: {char}") #debug
+                    decimal = decimal + (digito * 16 ** pot)
+                    pot += 1
+                    if i == len(num):
+                        pass
+        print(decimal)
+            
     elif tipo == 3 and tipo1 == 3: #Hexadecimal para Hexadecimal
         print(f"O número continua sendo {num}, pois é a mesma base de conversão.")
     elif tipo == 3 and tipo1 == 4: #Hexadecimal para Binario #esse ta feito
@@ -392,7 +447,7 @@ while valido == True:
         if resultado_bin:
             print(resultado_bin)
     
-    elif tipo == 4 and tipo1 == 1: #Binario para Octal
+    elif tipo == 4 and tipo1 == 1: #Binario para Octal #feito ##mudei de opnião, binario é muito bom, muito facil converter com o limite de 5 digitos
         for char_str in num: 
             if char_str == "-": # "Não vai subir ninguem!"  - Capitao Nascimento contra número negativo.v7
                 print("Saindo...") ## PEDE PRA SAIR RECRUTA
@@ -403,15 +458,140 @@ while valido == True:
                 if count_char > 5:
                     print("Por favor, digitar apenas 5 números")
                     break
-
-
+        if len(num) >= 4:
+            print("Nessa conversão, apenas 3 digitos binarios serão aceitos")
+        if num == "000":
+            digito_octal = 0
+        elif num == "001":
+            digito_octal = 1
+        elif num == "010":
+            digito_octal = 2
+        elif num == "011":
+            digito_octal = 3
+        elif num == "100":
+            digito_octal = 4
+        elif num == "101":
+            digito_octal = 5
+        elif num == "110":
+            digito_octal = 6
+        elif num == "111":
+            digito_octal = 7
+        else:
+            print("numero inválido, apenas 3 digitos")
+        print(digito_octal)
                 
-    elif tipo == 4 and tipo1 == 2: #Binario para Decimal
-        print("a")
-    elif tipo == 4 and tipo1 == 3: #Binario para Hexadecimal
-        print("a")
+    elif tipo == 4 and tipo1 == 2: #Binario para Decimal #feito
+        for char_str in num: 
+            if char_str == "-": # "Não vai subir ninguem!"  - Capitao Nascimento contra número negativo.v7
+                print("Saindo...") ## PEDE PRA SAIR RECRUTA
+                valido = False
+                break          
+            else:
+                count_char += 1
+            if count_char > 5:
+                print("Por favor, digitar apenas 5 números")
+                break
+            if num == "0000":
+                decimal = 0
+            elif num == "0001":
+                decimal = 1
+            elif num == "0010":
+                decimal = 2
+            elif num == "0011":
+                decimal = 3
+            elif num == "0100":
+                decimal = 4
+            elif num == "0101":
+                decimal = 5
+            elif num == "0110":
+                decimal = 6
+            elif num == "0111":
+                decimal = 7
+            elif num == "1000":
+                decimal = 8
+            elif num == "1001":
+                decimal = 9
+            elif num == "1010":
+                decimal = 10
+            elif num == "1011":
+                decimal = 11
+            elif num == "1100":
+                decimal = 12
+            elif num == "1101":
+                decimal = 13
+            elif num == "1110":
+                decimal = 14
+            elif num == "1111":
+                decimal = 15
+            print(decimal)
+
+    elif tipo == 4 and tipo1 == 3: #Binario para Hexadecimal # testar conversão, ta muito suspeito de fácil
+        for char_str in num: 
+            if char_str == "-": # "Não vai subir ninguem!"  - Capitao Nascimento contra número negativo.v7
+                print("Saindo...") ## PEDE PRA SAIR RECRUTA
+                valido = False
+                break          
+            else:
+                count_char += 1
+                if count_char > 5:
+                    print("Por favor, digitar apenas 5 números")
+                    break
+        # Iinput é 4 digitos, 16 combinaçoes, ou seja, 16 fodendos IFs quero nem saber
+        ## tenho cerebro pra conta mais não, agora é só por assosiação bb
+        if num == "0000": # toma
+            resultado_hex = "0"
+        elif num == "0001": # o gigantesco tabloide da preguiça
+            resultado_hex = "1"
+        elif num == "0010": # eu me orgulho disso
+            resultado_hex = "2"
+        elif num == "0011":
+            resultado_hex = "3"
+        elif num == "0100":
+            resultado_hex = "4"
+        elif num == "0101":
+            resultado_hex = "5"
+        elif num == "0110":# cara, pra 0 e 1, é muito facil se perder na ordem
+            resultado_hex = "6"
+        elif num == "0111":
+            resultado_hex = "7"
+        elif num == "1000":
+            resultado_hex = "8"
+        elif num == "1001":
+            resultado_hex = "9"
+        elif num == "1010":
+            resultado_hex = "A"
+        elif num == "1011":
+            resultado_hex = "B"
+        elif num == "1100": # esses ultimos doeu a cabeça
+            resultado_hex = "C"
+        elif num == "1101":
+            resultado_hex = "D"
+        elif num == "1110":
+            resultado_hex = "E"
+        elif num == "1111":
+            resultado_hex = "F"
+        print(resultado_hex)
     elif tipo == 4 and tipo1 == 4: #Binario para Binario
-        print(f"O número continua sendo {num}, pois é a mesma base de conversão.")
+        print(f"o numero é {num} pois é a mesma base ")
+
 
 #--------------------------------------#
 # é necessário um for pra verificar se tem negativo?
+
+#==============Bloco de explicação============================
+
+#for char_str in num: 
+#           if char_str == "-":
+#                print("Saindo...") 
+#                valido = False # é pra quebrar o codigo
+#                break          # aqui é pra ter certeza
+#            else:
+#                count_char += 1
+#                if count_char > 5:
+#                    print("Por favor, digitar apenas 5 números")
+#                    break
+#        pos = count_char - 1 # esse pos eu tenho que lembrar oque caralhos é, no dia que fiz tava inspirado
+
+# é um loop usando for que, verifica cada caracter dentro de num e se algum caracter for "-" ele sai
+# ele também conta quantos caracteres foram colocados na resposta, se passar de 5 ele sai
+#=================================================================
