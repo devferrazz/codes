@@ -11,6 +11,7 @@ digito_octal = "" # var para auxilio nas conta, muita conta, muita váriavel e p
 texto_invertido = "" # to criando variavel que nem sabia que teria que criar
 #=======================Boolean================================
 valido = True # literalmente o botao de desligar do codigo
+#Reset == False # essa idéia é interessante
 #=======================Int=====================================
 tipo = 0 # primeira solução
 tipo1 = 0 # segunda seleção
@@ -26,19 +27,26 @@ pot = 0 # irmao do pos, diferente do pos, eu sei oque esse faz, serve só pra po
 resultado_pot = 1 #nao vou mexer no pot, nao mexe no que ta funcionando
 #=================================Código==========================
 while valido == True:
-    if num or decimal or count_char or char or R or Q or octal != 0: # o famoso if do reset de variavel
-        num = 0
-        decimal = 0
+    if num or decimal or count_char or char or R or Q or octal or pos or pot or resultado_pot != 0: # o famoso if do reset de variavel # posso por uma unica varial (ex: reset == true pra resetar tudo)
         count_char = 0
         char = 0
-        R = 0
-        Q = 0
+        decimal = 0
         octal = 0
+        Q = 0
+        R = 0
+        pos = 0
+        pot
     if digito_hex or resultado_hex or digito_bin or resultado_bin != "": # esqueci de resetar a variavel deu F12FFFF0209DD10 na terceira conta
+        num = ""
+        string = ""
         digito_hex = ""
         resultado_hex = ""
         resultado_bin = ""
         digito_bin = ""
+        resultado_octal = ""
+        digito_octal = ""
+        texto_invertido = ""
+        
     print("+====================================================+")
     print("+                   Origem do Número                 +")
     print("+====================================================+")
